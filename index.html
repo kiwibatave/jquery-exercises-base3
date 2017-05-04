@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Jquery exercices base 3</title>
         <link rel="stylesheet" href="style.css">
+        <script src="jquery.js"></script>
     </head>
     <body>
         <h1>Exercices Jquery base 3</h1>
@@ -12,18 +13,63 @@
         <hr>
         <!-------------------------------------------- Exercice 1 -------------------------------------->
         <h3><em>Exercice 1</em></h3>
-        <p>Céer un bouton et un champ texte dans lequel on affiche le nombre de clics sur le bouton.</p>
-
+        <p>Créer un bouton et un champ texte dans lequel on affiche le nombre de clics sur le bouton.</p>
+          <p id="nbclic" type="text"></p>
+            <button id="btn1" onclick="nbclics++;">cliquez-moi</button>
+              <script>
+              var nbclics = 0;
+                $(document).ready(function(){
+                  $('#btn1').click(function(){
+                    $('#nbclic').text(nbclics);
+                  });
+                });
+              </script>
         <hr>
         <!-------------------------------------------- Exercice 2 -------------------------------------->
         <h3>Exercice 2</h3>
-        <p>Céer 2 boutons ("+" et "-") et un champ texte dans lequel on augmente ou baisse le chiffre en fonction des boutons cliqués</p>
-
+        <p>Créer 2 boutons ("+" et "-") et un champ texte dans lequel on augmente ou baisse le chiffre en fonction des boutons cliqués</p>
+          <p id="cnbc" type="text"></p>
+            <button class="btn2" onclick="nbclics++;">+</button>
+            <button class="btn2" onclick="nbclics--;">-</button>
+              <script>
+                $('.btn2').click(function(){
+                  $('#cnbc').text(nbclics);
+                });
+              </script>
         <hr>
         <!-------------------------------------------- Exercice 3 -------------------------------------->
         <h3>Exercice 3</h3>
         <p>Créer 5 boutons et un rectangle. Chaque bouton provoque une action sur le rectangle.
-
+          <p id="rectangle"></p>
+            <button id="btn01" >Dimensions</button>
+            <button id="btn02" >Rectangle vert</button>
+            <button id="btn03" >Couleurs initiales</button>
+            <button id="btn04" >Cacher</button>
+            <button id="btn05" >Montrer</button>
+          <script>
+            var h = 10;
+            $("#btn01").click(function(){
+                h = h + 10;
+              if (h >100) {
+                h =10;
+              }
+                var heightpx = h + "px";
+              $("#rectangle").css({"height": heightpx
+                  });
+              });
+            $("#btn02").click(function(){
+              $("#rectangle").css({"border-color":"green"});
+                });
+            $("#btn03").click(function(){
+              $("#rectangle").css({"border-color":""});
+                });
+            $("#btn04").click(function(){
+              $("#rectangle").hide();
+                });
+            $("#btn05").click(function(){
+              $("#rectangle").show();
+                });
+          </script>
         <ul>
             <li>Bouton 1 : augmente la hauteur de <b>10px</b>, si il dépasse <b>100px</b>, il remet la hauteur à <b>10px</b></li>
             <li>Bouton 2 : met le rectangle en vert</li>
@@ -39,11 +85,31 @@
         <h3>Exercice 4</h3>
         <p>Créer un bouton et un champ texte. Le but est de trouver un nombre entre 0 et 100. A chaque réponse la page répond :
         </p>
-        <ul>
+            <input id="reponse" type="text" name="user" min="1" max="100" placeholder="Rentrez un chiffre">
+            <button id="btn06" >CLIC CLIC CLIC</button>
+            <p class="retour"></p>
+          <script>
+            var random = Math.floor((Math.random() -0.0000001)*101);
+            var coups = 0;
+            $('#btn06').click(function(){
+              coups ++;
+            var tentatives = $("#reponse").val();
+              if(random > tentatives){
+                $('.retour').text("Trop petit mon coco !!!");
+              }
+              else if (random < tentatives){
+                $('.retour').text("Trop grand malheureux !!!");
+              }
+              else {
+                $('.retour').text("Gagné!!! Tu as mis "+coups+ " tentatives.");
+              }
+            });
+        </script>
+          <ul>
             <li>Plus</li>
             <li>Moins</li>
             <li>Correct</li>
-        </ul>
+          </ul>
         <p><b>Bonus</b> : Quand la réponse est trouvée, on obtient le nombre d'essai que l'on a fait.
         </p>
         <hr>
